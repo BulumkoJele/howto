@@ -1,0 +1,64 @@
+header{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 0;
+  margin-bottom: 12px;
+  border-bottom: 1px solid;
+}
+.logo{
+  font-weight: bold;
+}
+.shortcuts{
+  padding: 16px 8px;
+}
+.shortcuts input{
+  padding: 8px;
+  width: 100%;
+}
+.container{
+  padding: 8px;
+}
+.container div{
+  border: 1px solid;
+  padding: 8px 4px;
+  margin-bottom: 8px;
+  background-color: gainsboro;
+}
+.container div i {
+  font-size: 12px
+}
+b{
+  
+}
+p{
+  font-size: 14px;
+}
+dialog{
+  width: 90vw;
+  min-height: 85%;
+  background-color: lightblue;
+}
+.dheader{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom:16px;
+  padding: 8px 0;
+  font-weight: bold;
+}
+.dbody{
+  overflow-y: auto;
+}
+.dbody div{
+  display:flex;
+  flex-direction: column;
+  margin-bottom: 12px;
+}
+.dbody input, textarea{
+  padding:8px 4px;
+}
+.dcta{
+  display: flex;
+  justify-content: space-between;
+}

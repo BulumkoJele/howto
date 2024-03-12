@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title></title>
+  <link rel="stylesheet" href="home.css">
+</head>
+<body>
+  <header>
+    <div class="menu">
+      π
+    </div>
+    <div class="logo">
+      Howto
+    </div>
+    <nav>
+      <button id="add" >+</button>
+      <dialog id="dialog">
+        <div class="dheader">
+          Add a howto <button  id="close">x</button>
+        </div>
+        
+        <div class="dbody">
+          <div>
+            <label for="title">Title *</label>
+            <input type="text" id="title" value="How to " required>
+          </div>
+          <div>
+            <label for="desc">Description</label>
+              <textarea id="desc" cols="30" rows="5"></textarea>
+          </div>
+          <div class="steps">
+          <label>Number of steps :</label>
+          <input type="number" id="steps" required>
+          </div>
+        </div>
+        <div class="dcta">
+         <button>Cancel</button>
+ <button id="next">Next</button>
+          
+        </div>
+      </dialog>
+      <button>😊</button>
+      
+    </nav>
+    
+  </header>
+  
+  <main>
+    <div class="shortcuts">
+      <input type="search" placeholder="Search for a howto">
+      
+    </div>
+    <div class="container">
+      
+ <div>
+         <b>How to become a web developer</b>
+         <p>Start your career today with these easy steps</p>
+         <i>By <a href="">Bulumko Jele</a> on <a href="">09 March 2024</a></i>
+       </div>
+       <div>
+         <b>How to get things done</b>
+         <p>A step by step guide on jow to get started</p>
+         <i>By <a href="">Bulumko Jele</a> on <a href="">09 March 2024</a></i>
+       </div>
+       
+ <div>
+         <b>How to get things done</b>
+         <p>A step by step guide on jow to get started</p>
+         <i>By <a href="">Bulumko Jele</a> on <a href="">09 March 2024</a></i>
+       </div>
+    </div>
+  </main>
+  
+  <script>
+    // Open dialog when click btn
+    const info = {}
+    const addBtn = document.getElementById("add")
+    const dialog = document.getElementById("dialog")
+    addBtn.addEventListener("click", ()=>{
+      dialog.setAttribute("open", "open")
+    })
+    
+    const closeBtn = document.getElementById("close")
+    
+    closeBtn.addEventListener("click", ()=>{
+      dialog.removeAttribute("open")
+      
+    })
+    
+    
+    const nextBtn = document.getElementById("next")
+    
+    nextBtn.addEventListener("click", ()=>{
+      
+      info.title = document.getElementById("title").value
+      info.description = document.getElementById("desc").value
+      info.stepsNo = document.getElementById("steps").value
+      
+      getSteps()
+      getStepsInput()
+    })
+    
+    
+    function getSteps(){
+      const dcta = document.querySelector(".dcta")
+      const dbody = document.querySelector(".dbody")
+      const title = document.getElementById("title").value
+      const titleEl = document.createElement("h3")
+      
+      titleEl.style.margin = "8px 0 12px"
+      
+      dbody.innerHTML= ""
+      dcta.innerHTML = ""
+      
+      titleEl.innerText = title
+      dbody.appendChild(titleEl)
+      const noOfSteps = info.stepsNo
+      
+      for(let i = 0; i < noOfSteps; i++){
+        // step title label
+        const stepTitle = document.createElement("label")
+        stepTitle.for = `step${i+1}`
+        stepTitle.innerText = `Step ${i+1}`
+        stepTitle.style.display = "block"
+        stepTitle.style.margin = "0 0 4px 0"
+        dbody.appendChild(stepTitle)
+        // step title input
+        const stepInput = document.createElement("input")
+        stepInput.type = "text"
+        stepInput.id = `step${i+1}`
+        
+        stepInput.style.display = "block"
+        stepInput.style.margin = "0 0 8px"
+        stepInput.style.width = "90%"
+        
+        
+        
+        dbody.appendChild(stepInput)
+        // Step desc label
+        
+        const stepDescLabel = document.createElement("label")
+        stepDescLabel.for = `step${i+1}desc`
+        stepDescLabel.innerText = `Step ${i+1} Description`
+        stepDescLabel.style.margin = "0 0 8px"
+        dbody.appendChild(stepDescLabel)
+        // Step desc textarea
+        
+        const stepDescArea = document.createElement("textarea")
+        stepDescArea.rows = 5
+        stepDescArea.cols = 30
+        stepDescArea.style.margin = "0 0 8px"
+        stepDescArea.style.width = "90%"
+        
+        dbody.appendChild(stepDescArea)
+        // Buttons to move to next steps
+       
+      }
+      const cancelBtn = document.createElement("button")
+      cancelBtn.textContent = "Cancel"
+      cancelBtn.style.padding = "8px"
+      cancelBtn.style.marginRight = "8px"
+      cancelBtn.style.width = "25%"
+      cancelBtn.style.border = "none"
+      dbody.appendChild(cancelBtn)
+      
+const saveBtn = document.createElement("button")
+      saveBtn.textContent = "Save"
+      saveBtn.id = "save"
+      dbody.appendChild(saveBtn)
+      saveBtn.style.backgroundColor = "orangered"
+      saveBtn.style.color = "white"
+      saveBtn.style.fontWeight = "bold"
+      saveBtn.style.padding = "8px"
+      saveBtn.style.width = "30%"
+      saveBtn.style.border = "none"
+    }
+  function getStepsInput(){
+    const dbody = document.querySelector('.dbody')
+    
+    const saveBtn = document.getElementById("save")
+    
+    saveBtn.addEventListener("click", ()=>{
+      
+      const steps = []
+      
+      for(let i = 0; i < info.stepsNo; i++){
+        const currentStep = {}
+        let step = `Step ${i}`
+        let stepDesc = `Step ${i} Desc`
+        currentStep.step = dbody.getElementsByTagName("input")[i].value
+        currentStep.stepDesc = dbody.getElementsByTagName("textarea")[i].value 
+     
+        steps.push(currentStep)
+      }
+      info.steps = steps
+      console.log(info)
+
+    })
+  }
+    
+  </script>
+
+</body>
+
+</html>
